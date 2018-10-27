@@ -1,25 +1,43 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
 
 class App extends Component {
+  state = { value: 0 };
+
+  tambah() {
+    this.setState({
+      value: this.state.value + 1
+    });
+    this.log();
+  }
+
+  kurang() {
+    this.setState({
+      value: this.state.value - 1
+    });
+    this.log();
+  }
+
+  reset() {
+    this.setState({
+      value: 0
+    });
+  }
+
+  log() {
+    console.clear();
+    console.log("tombol ditekan = " + this.state.value);
+  }
+
   render() {
+    console.log("setelah render = " + this.state.value);
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <h1>COUNTER</h1>
+        <h2>{this.state.value}</h2>
+        <button onClick={() => this.tambah()}>Tambah</button>
+        <button onClick={() => this.kurang()}>Kurang</button>
+        <br />
+        <button onClick={() => this.reset()}>reset</button>
       </div>
     );
   }
